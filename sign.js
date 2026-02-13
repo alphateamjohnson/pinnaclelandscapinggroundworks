@@ -1,11 +1,10 @@
-// sign.js (UPDATED) — fixes decoding + mobile signing + creates a clean PNG
+// sign.js — decodes compressed payload, fixes mobile signing, generates a PNG "signed statement"
 
 const BUSINESS_WHATSAPP_INTL = "447809253688";
 
 function getCompressedPayload() {
   const d = new URLSearchParams(window.location.search).get("d");
   if (!d) return null;
-
   try {
     const json = LZString.decompressFromEncodedURIComponent(d);
     if (!json) return null;
@@ -37,10 +36,7 @@ function setupSignature(canvas) {
 
   const getPos = (e) => {
     const rect = canvas.getBoundingClientRect();
-    return {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    };
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
   };
 
   canvas.addEventListener("pointerdown", (e) => {
@@ -66,26 +62,18 @@ function setupSignature(canvas) {
     drawing = false;
   });
 
-  canvas.addEventListener("pointercancel", () => {
-    drawing = false;
-  });
+  canvas.addEventListener("pointercancel", () => { drawing = false; });
 
   return {
     clear() {
-      const rect = canvas.getBoundingClientRect();
+      const r = canvas.getBoundingClientRect();
       const c = canvas.getContext("2d");
-      c.clearRect(0, 0, rect.width, rect.height);
+      c.clearRect(0, 0, r.width, r.height);
       hasInk = false;
     },
-    hasInk() {
-      return hasInk;
-    },
-    toDataUrl() {
-      return canvas.toDataURL("image/png");
-    },
-    refreshSize() {
-      fitCanvasToDisplay(canvas);
-    }
+    hasInk() { return hasInk; },
+    toDataUrl() { return canvas.toDataURL("image/png"); },
+    refreshSize() { fitCanvasToDisplay(canvas); }
   };
 }
 
@@ -126,18 +114,16 @@ function formatDateTime(d) {
 }
 
 async function buildSignedImage({ name, address, phone, statement, signatureDataUrl }) {
-  // Crisp A4-ish PNG
   const W = 1240, H = 1754;
   const canvas = document.createElement("canvas");
   canvas.width = W;
   canvas.height = H;
   const ctx = canvas.getContext("2d");
 
-  // White background
   ctx.fillStyle = "#fff";
   ctx.fillRect(0, 0, W, H);
 
-  // Header bar
+  // Header
   ctx.fillStyle = "#003b2f";
   ctx.fillRect(0, 0, W, 220);
 
@@ -151,8 +137,8 @@ async function buildSignedImage({ name, address, phone, statement, signatureData
   const lh = logo.height * scale;
   ctx.drawImage(logo, (W - lw) / 2, (220 - lh) / 2, lw, lh);
 
-  let y = 300;
   const margin = 70;
+  let y = 300;
 
   ctx.fillStyle = "#0b0f0d";
   ctx.font = "700 34px system-ui, -apple-system, Segoe UI, Roboto, Arial";
@@ -206,7 +192,6 @@ async function buildSignedImage({ name, address, phone, statement, signatureData
   ctx.fillText("Client signature:", margin, y);
   y += 18;
 
-  // signature box
   const sigBoxH = 220;
   const sigBoxW = W - margin * 2;
   ctx.strokeStyle = "#9fb5ad";
@@ -225,7 +210,7 @@ async function buildSignedImage({ name, address, phone, statement, signatureData
   return canvas.toDataURL("image/png");
 }
 
-// ---------- Page init ----------
+// ---- init page ----
 const payload = getCompressedPayload() || {};
 
 const vName = document.getElementById("vName");
@@ -241,7 +226,6 @@ vStatement.value = payload.s || "";
 const sigCanvas = document.getElementById("sig");
 const sig = setupSignature(sigCanvas);
 
-// Keep canvas fitted if phone rotates
 window.addEventListener("resize", () => sig.refreshSize());
 
 document.getElementById("clearBtn").addEventListener("click", () => sig.clear());
