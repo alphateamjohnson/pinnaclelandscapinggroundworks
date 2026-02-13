@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+<img class="logo" src="assets/logo.png">
+</header>
+
+<main class="container">
+
+<h1>Statement for signature</h1>
+
+<div class="card">
+<p><b>Client:</b> <span id="vName"></span></p>
+<p><b>Address:</b> <span id="vAddress"></span></p>
+<p><b>Phone:</b> <span id="vPhone"></span></p>
+<hr>
+<p id="vStatement"></p>
+
+<h3>Signature</h3>
+<canvas id="sig" class="sigCanvas" width="800" height="300"></canvas>
+
+<div class="actions">
+<button id="submitBtn" class="btn primary">SUBMIT</button>
+</div>
+</div>
+
+<div id="afterBox" class="card hidden">
+<h2>Now send it back</h2>
+<p>
+1. SAVE IMAGE<br>
+2. Return to WhatsApp<br>
+3. ATTACH the saved image before sending
+</p>
+
+<a id="downloadLink" class="btn primary" download="signed.png">SAVE IMAGE</a>
+</div>
+
+</main>
+
+<script src="sign.js"></script>
+</body>
+</html>
