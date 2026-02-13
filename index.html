@@ -31,7 +31,7 @@
 
         <div>
           <label class="label" for="clientPhone">Client phone (UK)</label>
-          <input id="clientPhone" class="input" type="tel" placeholder="e.g. 07..." />
+          <input id="clientPhone" class="input" type="tel" inputmode="tel" placeholder="e.g. 07..." />
           <p class="hint">We’ll send WhatsApp to this number.</p>
         </div>
       </div>
@@ -41,27 +41,21 @@
 
       <div class="actions">
         <button id="sendBtn" class="btn primary" type="button">Send to WhatsApp</button>
-        <button id="previewBtn" class="btn" type="button">Preview signing link</button>
       </div>
 
-      <div id="previewBox" class="preview hidden">
-        <div class="previewRow">
-          <span class="badge">Link</span>
-          <a id="previewLink" href="#" target="_blank" rel="noopener">Open signing page</a>
-        </div>
-        <p class="hint">
-          Tip: Keep statements reasonably short (WhatsApp links have size limits).
-        </p>
-      </div>
+      <p class="hint strong" style="margin-top:10px;">
+        Note: After signing, the client must SAVE the signed image to their phone, then return to WhatsApp and ATTACH it before sending.
+      </p>
     </section>
 
     <section class="card subtle">
       <h2>What the client will do</h2>
       <ol class="steps">
         <li>Open the link from WhatsApp</li>
+        <li>Review the statement</li>
         <li>Sign with their finger</li>
         <li>Press <b>SUBMIT</b></li>
-        <li><b>Save the signed image to their phone</b></li>
+        <li><b>Save the signed image</b> to their phone</li>
         <li>Return to WhatsApp and <b>attach the saved image</b> before sending</li>
       </ol>
     </section>
@@ -72,6 +66,8 @@
     <div>07809 253688 · pinnaclelandscapinggroundworks@gmail.com</div>
   </footer>
 
+  <!-- Needed for shorter WhatsApp links -->
+  <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
