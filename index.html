@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pinnacle – Send Statement for Signature</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <img class="logo" src="assets/logo.png" alt="Pinnacle Landscaping and Groundworks" />
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Send a statement for signature</h1>
+    <p class="sub">
+      Fill in the statement and client details, then tap <b>Send to WhatsApp</b>.
+    </p>
+
+    <section class="card">
+      <label class="label" for="statement">Statement</label>
+      <textarea id="statement" class="input textarea" rows="6" placeholder="Type the statement here..."></textarea>
+
+      <div class="grid">
+        <div>
+          <label class="label" for="clientName">Client name</label>
+          <input id="clientName" class="input" type="text" placeholder="e.g. John Smith" />
+        </div>
+
+        <div>
+          <label class="label" for="clientPhone">Client phone (UK)</label>
+          <input id="clientPhone" class="input" type="tel" placeholder="e.g. 07..." />
+          <p class="hint">We’ll send WhatsApp to this number.</p>
+        </div>
+      </div>
+
+      <label class="label" for="clientAddress">Client address</label>
+      <textarea id="clientAddress" class="input textarea" rows="3" placeholder="Street, town, postcode"></textarea>
+
+      <div class="actions">
+        <button id="sendBtn" class="btn primary" type="button">Send to WhatsApp</button>
+        <button id="previewBtn" class="btn" type="button">Preview signing link</button>
+      </div>
+
+      <div id="previewBox" class="preview hidden">
+        <div class="previewRow">
+          <span class="badge">Link</span>
+          <a id="previewLink" href="#" target="_blank" rel="noopener">Open signing page</a>
+        </div>
+        <p class="hint">
+          Tip: Keep statements reasonably short (WhatsApp links have size limits).
+        </p>
+      </div>
+    </section>
+
+    <section class="card subtle">
+      <h2>What the client will do</h2>
+      <ol class="steps">
+        <li>Open the link from WhatsApp</li>
+        <li>Sign with their finger</li>
+        <li>Press <b>SUBMIT</b></li>
+        <li><b>Save the signed image to their phone</b></li>
+        <li>Return to WhatsApp and <b>attach the saved image</b> before sending</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>Pinnacle Landscaping &amp; Groundworks</div>
+    <div>07809 253688 · pinnaclelandscapinggroundworks@gmail.com</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
