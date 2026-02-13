@@ -11,14 +11,15 @@
 
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);background:var(--bg)}
-a{color:var(--brand2);word-break:break-all}
+a{color:var(--brand2);word-break:break-word}
 
 .header{
   background:var(--brand);
   padding:14px 16px;
+  border-bottom:1px solid rgba(255,255,255,.12);
 }
 .brand{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:center}
-.logo{max-height:70px;width:auto;display:block;}
+.logo{max-height:70px;width:auto;display:block}
 
 .container{
   max-width:980px;
@@ -35,50 +36,87 @@ h2{font-size:20px;margin:0 0 10px}
   border:1px solid var(--line);
   border-radius:var(--radius);
   padding:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,.04);
   margin:14px 0;
 }
+.card.subtle{background:#fbfdfc}
 
-.label{display:block;font-weight:700;margin:10px 0 6px}
+.label{display:block;font-weight:800;margin:10px 0 6px}
 .input{
   width:100%;
-  padding:12px;
+  padding:12px 12px;
   border:1px solid var(--line);
   border-radius:12px;
   font-size:16px;
+  outline:none;
+}
+.input:focus{
+  border-color:rgba(0,59,47,.45);
+  box-shadow:0 0 0 4px rgba(0,59,47,.08);
 }
 .textarea{resize:vertical;min-height:90px}
 
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+@media (min-width:720px){
+  .grid{grid-template-columns:1fr 1fr}
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
 
 .btn{
+  appearance:none;
   border:1px solid var(--line);
   background:#fff;
+  color:var(--text);
   padding:12px 14px;
   border-radius:12px;
   cursor:pointer;
-  font-weight:700;
+  font-weight:800;
   font-size:15px;
   text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:160px;
 }
 .btn.primary{
   background:var(--brand);
   border-color:var(--brand);
   color:#fff;
 }
+.btn:hover{background:#f7faf8}
+.btn.primary:hover{filter:brightness(1.03)}
+
+.hint{color:var(--muted);font-size:13px;margin:6px 0 0;line-height:1.35}
+.hint.strong{font-weight:900;color:#0b2b22}
 
 .hidden{display:none}
 
+.steps{margin:10px 0 0;padding-left:20px;line-height:1.55}
+
+/* Signature canvas: IMPORTANT mobile fix */
 .sigCanvas{
   width:100%;
+  height:220px;
   border:2px solid var(--line);
   border-radius:14px;
   background:#fff;
+  touch-action:none; /* stops the page dragging while signing */
 }
 
 .footer{
   padding:18px 16px 28px;
   text-align:center;
-  color:#fff;
+  color:rgba(255,255,255,.85);
   background:var(--brand);
   font-size:13px;
 }
