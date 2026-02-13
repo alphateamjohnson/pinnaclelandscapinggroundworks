@@ -1,47 +1,74 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header class="header">
-<img class="logo" src="assets/logo.png">
+  <div class="brand">
+    <img class="logo" src="assets/logo.png" alt="Pinnacle">
+  </div>
 </header>
 
 <main class="container">
+  <h1>Statement for signature</h1>
 
-<h1>Statement for signature</h1>
+  <div class="card">
+    <p class="sub">Please review the statement below. If any details are missing, type them in.</p>
 
-<div class="card">
-<p><b>Client:</b> <span id="vName"></span></p>
-<p><b>Address:</b> <span id="vAddress"></span></p>
-<p><b>Phone:</b> <span id="vPhone"></span></p>
-<hr>
-<p id="vStatement"></p>
+    <label class="label">Client</label>
+    <input id="vName" class="input" placeholder="Client name" />
 
-<h3>Signature</h3>
-<canvas id="sig" class="sigCanvas" width="800" height="300"></canvas>
+    <label class="label">Address</label>
+    <textarea id="vAddress" class="input textarea" rows="3" placeholder="Client address"></textarea>
 
-<div class="actions">
-<button id="submitBtn" class="btn primary">SUBMIT</button>
-</div>
-</div>
+    <label class="label">Phone</label>
+    <input id="vPhone" class="input" placeholder="Client phone" />
 
-<div id="afterBox" class="card hidden">
-<h2>Now send it back</h2>
-<p>
-1. SAVE IMAGE<br>
-2. Return to WhatsApp<br>
-3. ATTACH the saved image before sending
-</p>
+    <hr>
 
-<a id="downloadLink" class="btn primary" download="signed.png">SAVE IMAGE</a>
-</div>
+    <label class="label">Statement</label>
+    <textarea id="vStatement" class="input textarea" rows="6" placeholder="Statement"></textarea>
 
+    <h3>Signature</h3>
+    <canvas id="sig" class="sigCanvas"></canvas>
+
+    <div class="actions">
+      <button id="clearBtn" class="btn" type="button">Clear</button>
+      <button id="submitBtn" class="btn primary" type="button">SUBMIT</button>
+    </div>
+  </div>
+
+  <div id="afterBox" class="card hidden">
+    <h2>✅ Signed image created — now send it back</h2>
+    <p>
+      1) Tap <b>SAVE IMAGE</b><br>
+      2) Return to WhatsApp<br>
+      3) Tap the <b>paperclip / +</b> button<br>
+      4) Choose <b>Photos / Gallery</b><br>
+      5) Select the saved signed image and send ✅
+    </p>
+
+    <div class="actions">
+      <a id="downloadLink" class="btn primary" download="signed-statement.png" href="#">SAVE IMAGE</a>
+      <button id="openWaBtn" class="btn" type="button">OPEN WHATSAPP</button>
+    </div>
+
+    <p class="hint strong">
+      IMPORTANT: WhatsApp will NOT attach the image automatically — you must attach the saved image before sending.
+    </p>
+  </div>
 </main>
 
+<footer class="footer">
+  <div>Pinnacle Landscaping &amp; Groundworks</div>
+  <div>07809 253688 · pinnaclelandscapinggroundworks@gmail.com</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
 <script src="sign.js"></script>
 </body>
 </html>
