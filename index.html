@@ -32,7 +32,7 @@
         <div>
           <label class="label" for="clientPhone">Client phone (UK)</label>
           <input id="clientPhone" class="input" type="tel" inputmode="tel" placeholder="e.g. 07..." />
-          <p class="hint">We’ll send WhatsApp to this number.</p>
+          <p class="hint">This opens WhatsApp to the client with a pre-filled message. You still tap Send.</p>
         </div>
       </div>
 
@@ -44,7 +44,7 @@
       </div>
 
       <p class="hint strong" style="margin-top:10px;">
-        Note: After signing, the client must SAVE the signed image to their phone, then return to WhatsApp and ATTACH it before sending.
+        Client steps: Sign → SUBMIT → SAVE IMAGE → return to WhatsApp → ATTACH the saved image → Send.
       </p>
     </section>
 
@@ -66,7 +66,7 @@
     <div>07809 253688 · pinnaclelandscapinggroundworks@gmail.com</div>
   </footer>
 
-  <!-- Needed for shorter WhatsApp links -->
+  <!-- Used to compress the payload so the WhatsApp link is shorter -->
   <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
   <script src="app.js"></script>
 </body>
